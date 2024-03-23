@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private int p_velocity = 5;
     int velocity { get { return p_velocity; }
         set { 
-        if (value <= 0)
+        if (value < 0)
             {
                 p_velocity = 0;
             }

@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-   [SerializeField] float speed;
-    GameObject target;
     Rigidbody enemyRB;
+    private float e_speed = 5;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Get own RB
-        enemyRB = gameObject.GetComponent<Rigidbody>();
-
-        //Get the player
-       target = GameObject.Find("Player");
+    //encapsulated enemy speed
+    protected float speed { get { return e_speed; } 
+        set {
+            if (value < 0)
+            {
+                e_speed = 0;
+            }
+            else { e_speed = value; }
+        } 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (GameObject.Find("Player"))
-        {
-            SeekPlayer();
-        }
-    }
-
+    //Kill player on contact
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Player")
@@ -35,8 +27,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-      void SeekPlayer()
+      protected virtual void SeekPlayer()
     {
+        //Get own RB
+        enemyRB = gameObject.GetComponent<Rigidbody>();
+        //Get the player
+        GameObject target = GameObject.Find("Player");
         Vector3 targetPos = new Vector3 (target.transform.position.x, enemyRB.transform.position.y, target.transform.position.z);
         if (enemyRB.transform.position != targetPos)
         {
