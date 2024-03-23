@@ -5,7 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody playerRB;
-    [SerializeField] int velocity = 0;
+
+    //Encapsulation to avoid negative speed
+    private int p_velocity = 5;
+    int velocity { get { return p_velocity; }
+        set { 
+        if (value <= 0)
+            {
+                p_velocity = 0;
+            }
+            else { p_velocity = value; }
+        } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        int jumpForce = 2000;
+        float jumpForce = 2000;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerRB.AddForce(playerRB.transform.up * jumpForce * Time.deltaTime, ForceMode.Impulse);
