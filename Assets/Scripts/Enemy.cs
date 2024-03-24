@@ -42,10 +42,13 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Dash()
     {
-        enemyRB = gameObject.GetComponent<Rigidbody>();
-        GameObject target = GameObject.Find("Player");
-        Vector3 direction = (target.transform.position - gameObject.transform.position).normalized;
-        int speed = 10;
-        enemyRB.AddForce(direction * speed, ForceMode.Impulse);
+        if (GameObject.Find("Player"))
+        {
+            enemyRB = gameObject.GetComponent<Rigidbody>();
+            GameObject target = GameObject.Find("Player");
+            Vector3 direction = (target.transform.position - gameObject.transform.position).normalized;
+            int speed = 10;
+            enemyRB.AddForce(direction * speed, ForceMode.Impulse);
+        }
     }
 }

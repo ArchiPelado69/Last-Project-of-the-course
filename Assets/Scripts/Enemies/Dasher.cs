@@ -25,6 +25,7 @@ public class Dasher : Enemy
         else
         {
             StopCoroutine(DashCorrutine());
+            dashed = true;
         }
     }
 
