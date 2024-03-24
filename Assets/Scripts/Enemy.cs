@@ -39,4 +39,13 @@ public class Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
     }
+
+    protected virtual void Dash()
+    {
+        enemyRB = gameObject.GetComponent<Rigidbody>();
+        GameObject target = GameObject.Find("Player");
+        Vector3 direction = (target.transform.position - gameObject.transform.position).normalized;
+        int speed = 10;
+        enemyRB.AddForce(direction * speed, ForceMode.Impulse);
+    }
 }

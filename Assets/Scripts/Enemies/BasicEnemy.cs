@@ -7,7 +7,6 @@ public class BasicEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -16,6 +15,11 @@ public class BasicEnemy : Enemy
         if (GameObject.Find("Player"))
         {
             SeekPlayer();
+        }
+    
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Dash();
         }
     }
 }
