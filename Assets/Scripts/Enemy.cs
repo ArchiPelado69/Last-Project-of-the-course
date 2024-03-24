@@ -8,14 +8,14 @@ public class Enemy : MonoBehaviour
     private float e_speed = 5;
 
     //encapsulated enemy speed
-    protected float speed { get { return e_speed; } 
+    protected float speed { get { return e_speed; }
         set {
             if (value < 0)
             {
                 e_speed = 0;
             }
             else { e_speed = value; }
-        } 
+        }
     }
 
     //Kill player on contact
@@ -27,13 +27,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-      protected virtual void SeekPlayer()
+    protected virtual void SeekPlayer()
     {
         //Get own RB
         enemyRB = gameObject.GetComponent<Rigidbody>();
         //Get the player
         GameObject target = GameObject.Find("Player");
-        Vector3 targetPos = new Vector3 (target.transform.position.x, enemyRB.transform.position.y, target.transform.position.z);
+        Vector3 targetPos = new Vector3(target.transform.position.x, enemyRB.transform.position.y, target.transform.position.z);
         if (enemyRB.transform.position != targetPos)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
