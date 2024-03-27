@@ -61,7 +61,6 @@ public class Enemy : MonoBehaviour
             enemyRB = gameObject.GetComponent<Rigidbody>();
             GameObject target = GameObject.Find("Player");
             Vector3 P_Position = (target.transform.position + new Vector3(r_x,0,r_z));
-            int speed = 10;
             enemyRB.transform.position = P_Position;
         }
     }
