@@ -51,4 +51,18 @@ public class Enemy : MonoBehaviour
             enemyRB.AddForce(direction * speed, ForceMode.Impulse);
         }
     }
+
+    protected virtual void Teleport()
+    {
+        float r_x = Random.Range(-10,10);
+        float r_z = Random.Range(-10,10);
+        if (GameObject.Find("Player"))
+        {
+            enemyRB = gameObject.GetComponent<Rigidbody>();
+            GameObject target = GameObject.Find("Player");
+            Vector3 P_Position = (target.transform.position + new Vector3(r_x,0,r_z));
+            int speed = 10;
+            enemyRB.transform.position = P_Position;
+        }
+    }
 }

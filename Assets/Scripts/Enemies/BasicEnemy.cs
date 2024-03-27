@@ -16,10 +16,5 @@ public class BasicEnemy : Enemy
         {
             SeekPlayer();
         }
-    
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Dash();
-        }
     }
 }
